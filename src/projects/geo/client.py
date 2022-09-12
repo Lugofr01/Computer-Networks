@@ -2,7 +2,7 @@
 """
 `geo client` implementation
 
-@authors:
+@authors:Frank lugola
 @version: 2022.9
 """
 import argparse
