@@ -2,13 +2,16 @@
 """
 `geo server` implementation
 
-@authors:
+@authors: Frank Lugola
 @version: 2022.9
 """
 import argparse
+from itertools import count
 import logging
 import socket
 from csv import DictReader
+import csv
+from typing import List
 
 HOST = "127.0.0.1"
 PORT = 4300
@@ -23,10 +26,24 @@ def read_file(filename: str) -> tuple[dict[str, str], int]:
             `dictionary` is a map {country:capital} and
             `count` is the number of countries in the world
     """
-    # TODO: Implement this function
-    ...
 
+    country_dictionary = {}
+    count = 0
+    with open(filename) as csvfile:
+        csvreader =DictReader(csvfile, delimiter=';')
+        for row in csvreader:
+            split_countries = list(row["Country"].split(", "))
+    
+            for i in split_countries:
+                capitals = row["Capital"]
+                country_dictionary[i] = capitals
+            if row["Capital"] not in capitals:
+                capitals.add(row["Capital"])
+            count +=1
+    return country_dictionary, count
+    
 
+   
 def find_capital(world: dict, country: str) -> str:
     """Find the capital of an existing country
     Return *No such country* otherwise
@@ -35,9 +52,16 @@ def find_capital(world: dict, country: str) -> str:
     :param country: country to look up
     :return: capital of the specified country
     """
-    # TODO: Implement this function
-    ...
-
+    world_dictionary = {}
+    for key, val in world.items():
+        if "," in key:
+            key.split(",")
+        world_dictionary[key] = val
+    
+    if country not in world_dictionary:
+        return "No such country." 
+    
+    return world_dictionary.get(country)
 
 def format_message(message: str) -> bytes:
     """Convert the message to bytes
@@ -45,8 +69,11 @@ def format_message(message: str) -> bytes:
     :param message: message to send
     :return: message converted to bytes
     """
-    # TODO: Implement this function
+    
     ...
+    format_message = message.encode()
+
+    return format_message
 
 
 def parse_data(data: bytes) -> str:
@@ -55,15 +82,20 @@ def parse_data(data: bytes) -> str:
     :param data: data to decode
     :return: decoded data
     """
-    # TODO: Implement this function
+   
     ...
+    parse_data = data.decode()
+
+
+    return parse_data
+
 
 
 def server_loop(world: dict):
     """Main server loop"""
     print("The server has started")
     with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as sock:
-        # TODO: Implement this function
+       
         ...
     print("The server has finished")
 
