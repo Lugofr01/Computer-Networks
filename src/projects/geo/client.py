@@ -34,7 +34,7 @@ def parse_data(data: bytes) -> str:
     :param data: data received
     :return: decoded string
     """
-    # TODO: Implement this function
+    
     ...
     parse_data = data.decode()
 
@@ -47,7 +47,7 @@ def read_user_input() -> str:
 
     :return: country name
     """
-    # TODO: Implement this function
+   
     ...
     read_user_input = input("Enter a Country name: ")
 
