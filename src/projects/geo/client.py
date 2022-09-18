@@ -2,10 +2,11 @@
 """
 `geo client` implementation
 
-@authors:Frank lugola
+@authors:Frank Lugola
 @version: 2022.9
 """
 import argparse
+from email.message import Message
 import logging
 import socket
 
@@ -19,8 +20,11 @@ def format_message(message: list[str]) -> bytes:
     :param message: message to encode
     :return: message as bytes
     """
-    # TODO: Implement this function
+
     ...
+    format_message = message.encode()
+
+    return format_message
 
 
 def parse_data(data: bytes) -> str:
@@ -31,6 +35,10 @@ def parse_data(data: bytes) -> str:
     """
     # TODO: Implement this function
     ...
+    parse_data = data.decode()
+
+
+    return parse_data
 
 
 def read_user_input() -> str:
@@ -40,14 +48,30 @@ def read_user_input() -> str:
     """
     # TODO: Implement this function
     ...
+    read_user_input = input("Enter a Country name: ")
+
+    return read_user_input
+
 
 
 def client_loop():
     """Main client loop"""
     print("The client has started")
     with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as sock:
-        # TODO: Implement this function
-        ...
+        while True:
+            Message = read_user_input()
+            logging.info("Connecting to %s:%d", HOST, PORT)
+            sock.connect((HOST, PORT))
+            logging.info("Connected to %s:%d", HOST, PORT)
+            logging.info("Formatting data")
+            data_out = format_message(name)
+            logging.info("Sending data")
+            sock.sendall(data_out)
+            logging.info("Receiving data")
+            data_in = sock.recv(1024)
+            logging.info("Parsing data")
+            message = parse_data(data_in)
+            print(f"Server responded: {message}")
     print("The client has finished")
 
 
