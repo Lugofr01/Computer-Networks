@@ -16,7 +16,6 @@ from typing import List
 HOST = "127.0.0.1"
 PORT = 4300
 
-
 def read_file(filename: str) -> tuple[dict[str, str], int]:
     """Read the world countries and their capitals from the file
     Make sure not to count United States of America and USA as two different countries
@@ -86,9 +85,7 @@ def parse_data(data: bytes) -> str:
     ...
     parse_data = data.decode()
 
-
     return parse_data
-
 
 
 def server_loop(world: dict):
