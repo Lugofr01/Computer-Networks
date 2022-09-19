@@ -99,7 +99,7 @@ def server_loop(world: dict):
             message = parse_data(message)
             if message == "BYE":
                 break
-            print(f"Received {message}")
+            print(f"Received: {message}")
             sock.sendto(format_message(find_capital(world,message)), client)
         sock.close()
     print("The server has finished")

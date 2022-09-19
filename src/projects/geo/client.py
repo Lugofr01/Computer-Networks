@@ -70,7 +70,7 @@ def client_loop():
             outData, _ = sock.recvfrom(2048)
             message = parse_data(outData)
             print(message)
-            print(f"Received {message}")
+            print(f"Received: {message}")
     print("The client has finished")
 
 
