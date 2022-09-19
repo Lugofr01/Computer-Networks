@@ -6,6 +6,7 @@
 @version: 2022.9
 """
 import argparse
+from base64 import decode
 from itertools import count
 import logging
 import socket
@@ -92,10 +93,16 @@ def server_loop(world: dict):
     """Main server loop"""
     print("The server has started")
     with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as sock:
-       
-        ...
+        sock.bind((HOST, PORT))
+        while True:
+            message, client = sock.recvfrom(2048)
+            message = parse_data(message)
+            if message == "BYE":
+                break
+            print(f"Received {message}")
+            sock.sendto(format_message(find_capital(world,message)), client)
+        sock.close()
     print("The server has finished")
-
 
 def main():
     """Main function"""

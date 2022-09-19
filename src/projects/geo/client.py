@@ -60,19 +60,17 @@ def client_loop():
     print("The client has started")
     with socket.socket(socket.AF_INET, socket.SOCK_DGRAM) as sock:
         while True:
-            Message = read_user_input()
+            message = read_user_input()
             logging.info("Connecting to %s:%d", HOST, PORT)
-            sock.connect((HOST, PORT))
             logging.info("Connected to %s:%d", HOST, PORT)
             logging.info("Formatting data")
-            data_out = format_message(name)
-            logging.info("Sending data")
-            sock.sendall(data_out)
-            logging.info("Receiving data")
-            data_in = sock.recv(1024)
-            logging.info("Parsing data")
-            message = parse_data(data_in)
-            print(f"Server responded: {message}")
+            sock.sendto(format_message(message), (HOST, PORT))
+            if message == "BYE":
+                break
+            outData, _ = sock.recvfrom(2048)
+            message = parse_data(outData)
+            print(message)
+            print(f"Recieved: {message}")
     print("The client has finished")
 
 
