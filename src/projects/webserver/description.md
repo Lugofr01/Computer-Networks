@@ -80,7 +80,8 @@ See the test file for details of the message.
 ## Testing
 
 ```bash
-python -m pytest tests/projects/webserver/test_server.py
+
+
 ```
 
 ```bash
