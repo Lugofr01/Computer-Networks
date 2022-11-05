@@ -5,7 +5,7 @@ Python traceroute implementation using ICMP
 
 
 """
-@author:Frank C Lugola
+@author:Frank Charles Lugola
 @version: 2022.10
 """
 import argparse
