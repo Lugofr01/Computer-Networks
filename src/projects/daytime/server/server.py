@@ -3,6 +3,8 @@ import time
 host = "127.0.0.1"
 port = 13
 
+# this only works with tcp
+
 server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 server.bind(("0.0.0.0", 13)) 
 server.listen(5)
