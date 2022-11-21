@@ -8,6 +8,8 @@ import argparse
 server = "127.0.0.1"
 
 port = 13
+
+
 # tcp
 def main1():
     print("Client here")
@@ -17,6 +19,8 @@ def main1():
         response = sock.recv(2048).decode()
         print(f"Daytime: {response}")
     print("Client is done")
+
+
 # udp
 def main2():
     print("Client here")

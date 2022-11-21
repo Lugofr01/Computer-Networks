@@ -1,7 +1,7 @@
 #! /usr/bin/env node
 "use strict";
 exports.__esModule = true;
-var location = process.env.location || "Decorah, Iowa";
+var LOCATION = process.env.LOCATION || "Decorah, Iowa";
 
 function getTime(d) {
   if (d === void 0) {
@@ -9,7 +9,7 @@ function getTime(d) {
   }
 
   var date = new Date();
-  return date + " in " + location + ".\r\n";
+  return date + " in " + LOCATION + ".\r\n";
 }
 var net = require("net");
 function tcpServer(messageProvider) {
