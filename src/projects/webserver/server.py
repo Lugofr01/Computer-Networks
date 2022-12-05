@@ -1,6 +1,9 @@
 #!/usr/bin/env python3
 """Python Web server implementation"""
+<<<<<<< HEAD
 from logging.config import dictConfig
+=======
+>>>>>>> b463ff3dcae9ca1bb433108d634e6159088a47de
 from socket import socket, AF_INET, SOCK_STREAM
 from datetime import datetime
 from time import sleep
@@ -16,6 +19,7 @@ SRVR_NAME = ""
 
 
 def parse_request(data: bytes) -> dict:
+<<<<<<< HEAD
 
     """Parse the incoming request"""
     ...
@@ -48,6 +52,10 @@ def parse_request(data: bytes) -> dict:
     return requestDictionary
 
 
+=======
+    """Parse the incoming request"""
+    ...
+>>>>>>> b463ff3dcae9ca1bb433108d634e6159088a47de
 
 
 def format_response(
@@ -55,6 +63,7 @@ def format_response(
 ) -> bytes:
     """Format the response"""
     ...
+<<<<<<< HEAD
     messagelist =["OK","Not Found","Method Not Allowed","Not Implemented"]
     length =len(data)
     
@@ -97,6 +106,8 @@ def format_response(
                 
                 return (f"{http_version} {status_code} {messagelist[3]}\r\nDate: {datetime.now()}\r\nServer: CS430/2022\r\nContent-Length: {length}\r\n\r\n{data}".encode())
 
+=======
+>>>>>>> b463ff3dcae9ca1bb433108d634e6159088a47de
 
 
 def server_loop(logfilename: Path):

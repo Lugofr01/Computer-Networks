@@ -80,8 +80,12 @@ See the test file for details of the message.
 ## Testing
 
 ```bash
+<<<<<<< HEAD
 
 
+=======
+python -m pytest tests/projects/webserver/test_server.py
+>>>>>>> b463ff3dcae9ca1bb433108d634e6159088a47de
 ```
 
 ```bash

@@ -2,7 +2,11 @@
 """
 `dnsresolver` implementation
 
+<<<<<<< HEAD
 @authors:Frank Lugola
+=======
+@authors:
+>>>>>>> b463ff3dcae9ca1bb433108d634e6159088a47de
 @version: 2022.10
 """
 
@@ -36,9 +40,12 @@ def val_to_2_bytes(value: int) -> tuple[int]:
     """
     # TODO: Implement this function
     ...
+<<<<<<< HEAD
     val = (value >> 8 & 255, value & 255)
     return val
     
+=======
+>>>>>>> b463ff3dcae9ca1bb433108d634e6159088a47de
 
 
 def val_to_n_bytes(value: int, n_bytes: int) -> tuple[int]:
@@ -48,20 +55,26 @@ def val_to_n_bytes(value: int, n_bytes: int) -> tuple[int]:
     """
     # TODO: Implement this function
     ...
+<<<<<<< HEAD
     val =tuple([value >> i*8 & 255 for i in range(n_bytes-1, -1, -1)])
     return val
 
+=======
+>>>>>>> b463ff3dcae9ca1bb433108d634e6159088a47de
 
 
 def bytes_to_val(byte_list: list) -> int:
     """Merge n bytes into a value"""
     # TODO: Implement this function
     ...
+<<<<<<< HEAD
     mergedValue = 0
     byteLength =len(byte_list)
     for j, i in enumerate(range(byteLength,0,-1)):
         mergedValue += byte_list[i-1] << (8*j)
     return mergedValue
+=======
+>>>>>>> b463ff3dcae9ca1bb433108d634e6159088a47de
 
 
 def get_2_bits(byte_list: list) -> int:
@@ -71,8 +84,11 @@ def get_2_bits(byte_list: list) -> int:
     """
     # TODO: Implement this function
     ...
+<<<<<<< HEAD
     val = byte_list[0] >> 6
     return val
+=======
+>>>>>>> b463ff3dcae9ca1bb433108d634e6159088a47de
 
 
 def get_domain_name_location(byte_list: list) -> int:
@@ -82,8 +98,11 @@ def get_domain_name_location(byte_list: list) -> int:
     """
     # TODO: Implement this function
     ...
+<<<<<<< HEAD
     value = bytes_to_val(byte_list) & 0x3fff
     return value
+=======
+>>>>>>> b463ff3dcae9ca1bb433108d634e6159088a47de
 
 
 def parse_cli_query(
@@ -97,6 +116,7 @@ def parse_cli_query(
     """
     # TODO: Implement this function
     ...
+<<<<<<< HEAD
     
     if q_type is not None:
 
@@ -118,6 +138,8 @@ def parse_cli_query(
         
     return (q_domain.split("."),dnsType,address)
     
+=======
+>>>>>>> b463ff3dcae9ca1bb433108d634e6159088a47de
 
 
 def format_query(q_domain: list, q_type: int) -> bytearray:
@@ -133,6 +155,7 @@ def format_query(q_domain: list, q_type: int) -> bytearray:
     """
     # TODO: Implement this function
     ...
+<<<<<<< HEAD
     formatedQuery = bytearray()
     transactionID = randint(0,65535)
     flags = 0x100
@@ -174,6 +197,8 @@ def format_query(q_domain: list, q_type: int) -> bytearray:
 
 
 
+=======
+>>>>>>> b463ff3dcae9ca1bb433108d634e6159088a47de
 
 
 def parse_response(resp_bytes: bytes) -> list:
@@ -184,6 +209,7 @@ def parse_response(resp_bytes: bytes) -> list:
     """
     # TODO: Implement this function
     ...
+<<<<<<< HEAD
     index_bytes = [int(i, base=16) for i in resp_bytes.hex(" ",1).split()]
     val = bytes_to_val([index_bytes[6], index_bytes[7]])
     address = 12
@@ -210,6 +236,10 @@ def parse_response(resp_bytes: bytes) -> list:
 
 
 
+=======
+
+
+>>>>>>> b463ff3dcae9ca1bb433108d634e6159088a47de
 def parse_answers(resp_bytes: bytes, answer_start: int, rr_ans: int) -> list[tuple]:
     """
     Parse DNS server answers
@@ -218,6 +248,7 @@ def parse_answers(resp_bytes: bytes, answer_start: int, rr_ans: int) -> list[tup
     """
     # TODO: Implement this function
     ...
+<<<<<<< HEAD
 
     
     tupleFormat=[]
@@ -249,6 +280,8 @@ def parse_answers(resp_bytes: bytes, answer_start: int, rr_ans: int) -> list[tup
 
 
 
+=======
+>>>>>>> b463ff3dcae9ca1bb433108d634e6159088a47de
 
 
         parsedBytes={k:bytes_to_val([[int(i, base=16) for i in resp_bytes.hex(" ",1).split()][answer_start+n]for n in bytesDictionary[k]]) for k in bytesDictionary}
@@ -305,6 +338,7 @@ def parse_address_a(addr_len: int, byteArray: bytes) -> str:
     """
     # TODO: Implement this function
     ...
+<<<<<<< HEAD
     ipv4 = ""
     for i in range(0,addr_len,+1):
         if  addr_len> i+1:
@@ -312,6 +346,8 @@ def parse_address_a(addr_len: int, byteArray: bytes) -> str:
         else:
             ipv4 = ipv4 + str(byteArray[i])
     return ipv4
+=======
+>>>>>>> b463ff3dcae9ca1bb433108d634e6159088a47de
 
 
 
@@ -319,6 +355,7 @@ def parse_address_aaaa(addr_len: int, byteArray: bytes) -> str:
     """Extract IPv6 address"""
     # TODO: Implement this function
     ...
+<<<<<<< HEAD
 
     IPV6 = ""
     
@@ -343,6 +380,8 @@ def parse_address_aaaa(addr_len: int, byteArray: bytes) -> str:
 
     return IPV6 
 
+=======
+>>>>>>> b463ff3dcae9ca1bb433108d634e6159088a47de
 
 
 def resolve(query: tuple) -> None:
@@ -370,6 +409,7 @@ def main():
     """Main function"""
     ...
     arg_parser = argparse.ArgumentParser(description="Parse arguments")
+<<<<<<< HEAD
     # TODO: Complete this function to accept givenDomain name, record type, and the server address as command-line parameters
     arg_parser.add_argument("givenDomain")
 
@@ -385,6 +425,9 @@ def main():
 
 
 
+=======
+    # TODO: Complete this function to accept domain name, record type, and the server address as command-line parameters
+>>>>>>> b463ff3dcae9ca1bb433108d634e6159088a47de
     arg_parser.add_argument(
         "-d", "--debug", action="store_true", help="Enable logging.DEBUG mode"
     )
@@ -397,7 +440,11 @@ def main():
         logger.setLevel(logging.WARNING)
     logging.basicConfig(format="%(levelname)s: %(message)s", level=logger.level)
 
+<<<<<<< HEAD
     resolve((args.givenDomain, args.type, args.server))
+=======
+    resolve((args.domain, args.type, args.server))
+>>>>>>> b463ff3dcae9ca1bb433108d634e6159088a47de
 
 
 if __name__ == "__main__":
