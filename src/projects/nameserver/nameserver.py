@@ -113,8 +113,7 @@ def read_zone_file(filename: str) -> tuple:
                 dictionary[values] = [(time2Live, part[lengthPart - 2], part[lengthPart-1], part[lengthPart])]
 
             else:    
-                dictionary[values].append((time2Live, part[lengthPart - 2], part[lengthPart - 1], part[lengthPart]))
-            
+                dictionary[values].append((time2Live, part[lengthPart - 2], part[lengthPart - 1], part[lengthPart])) 
                 
     return (origin, dictionary)
 
@@ -127,8 +126,6 @@ def parse_request(origin: str, msg_req: bytes) -> tuple:
     domain_start = 12
     domain_length = msg_req[12]
     domain = msg_req[domain_start+1:domain_start+1+domain_length].decode()
-
-
     
     id = bytes_to_val(msg_req[0:2])
 
@@ -146,8 +143,6 @@ def parse_request(origin: str, msg_req: bytes) -> tuple:
         raise ValueError("Unknown query type")
     if bytes_to_val(msg_req[domain_start:][pointer+3:pointer+5]) !=1:
         raise ValueError("Unknown class")
-
-
 
 
     return tuple([id,domain, select, msg_req[domain_start:]])
