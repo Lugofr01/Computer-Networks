@@ -170,6 +170,8 @@ def format_response(
         response = response+ struct.pack(">HH", qry_type, 1)
         
         cleanedTTLStr = val_to_n_bytes(TTL_SEC[i[0]], 4)
+        # time2Live = qry
+
         time2Live = bytearray()
         for j in cleanedTTLStr:
             time2Live += bytes([j])
