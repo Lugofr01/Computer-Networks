@@ -157,11 +157,11 @@ def format_response(
     formatResponse = [i for i in zone[qry_name] \
     if i[2] == DNS_TYPES[qry_type]]
     
-    response = struct.pack(">HHHHHH", trans_id, 0x8100, 1, len(formatResponse)\
+    response = struct.pack(">HHHHHH", trans_id, 33024, 1, len(formatResponse)\
 , 0, 0)
     response += qry
     for i in formatResponse:
-        response += bytes([0xC0, 0x0C])
+        response += bytes([192, 12])
         response = response+ struct.pack(">HH", qry_type, 1)
         
         cleanedTTLStr = val_to_n_bytes(TTL_SEC[i[0]], 4)
@@ -190,7 +190,7 @@ def format_response(
 
 
                 for i in ans:
-                    response =response + bytes([i])      
+                    response = response + bytes([i])      
     return response
 
 
