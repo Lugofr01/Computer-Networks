@@ -2,7 +2,7 @@
 """
 `nameserver` implementation
 
-@author:
+@author:Frank Lugola
 @version:
 """
 
@@ -184,20 +184,20 @@ def format_response(
         for j in cleanedTTLStr:
             time2Live += bytes([j])
         response += time2Live
-        stackAddress = i[len(i) - 1]
+        
 
 
         if qry_type == 1:
-            data_len = len(stackAddress.split("."))
-            response += struct.pack(">h", data_len)
-            addrArray = [bytes([int(item)]) for item in stackAddress.split(".")]
+            strLength = len(i[len(i) - 1].split("."))
+            response += struct.pack(">h", strLength)
+            addrArray = [bytes([int(item)]) for item in i[len(i) - 1].split(".")]
             for i in addrArray:
                 response += i
             
 
         else:
             response += struct.pack(">H", 16)
-            ans = stackAddress.split(":")
+            ans = i[len(i) - 1].split(":")
 
             for i in ans:
                 ans = val_to_n_bytes(int(i, 16), 2)
