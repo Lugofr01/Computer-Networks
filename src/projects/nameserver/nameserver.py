@@ -154,9 +154,9 @@ def format_response(
     """Format the response"""
     # TODO: Implement this function
     ...
-    formatResponse = [i for i in zone[qry_name] if i[2] == DNS_TYPES[qry_type]]
+    formatResponse = [i for i in zone[qry_name] \
+    if i[2] == DNS_TYPES[qry_type]]
     
-
     response = struct.pack(">HHHHHH", trans_id, 0x8100, 1, len(formatResponse)\
 , 0, 0)
     response += qry
