@@ -81,7 +81,7 @@ def read_zone_file(filename: str) -> tuple:
     Read the zone file and build a dictionary
     Use domain names as keys and list(s) of records as values
     """
-# ≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈≈
+
     # TODO: Implement this function
     ...
     dictionary = {}
@@ -108,9 +108,6 @@ def read_zone_file(filename: str) -> tuple:
                 time2Live = part[lengthPart - 3]
             else:
                 time2Live = time
-
-                
-       
             
             if values not in dictionary:
                 dictionary[values] = [(time2Live, part[lengthPart - 2], part[lengthPart-1], part[lengthPart])]
@@ -126,7 +123,7 @@ def parse_request(origin: str, msg_req: bytes) -> tuple:
     """
     Parse the request and return query parameters as a tuple.
     """
-    # Extract the domain name from the message and decode it.
+ # Extract the domain name from the message and decode it.
     domain_start = 12
     domain_length = msg_req[12]
     domain = msg_req[domain_start+1:domain_start+1+domain_length].decode()
@@ -134,10 +131,6 @@ def parse_request(origin: str, msg_req: bytes) -> tuple:
 
     
     id = bytes_to_val(msg_req[0:2])
-
-
-
-
 
 
     pointer = 0
@@ -203,9 +196,7 @@ def format_response(
 
 
                 for i in ans:
-                    response =response + bytes([i])
-            
-            
+                    response =response + bytes([i])      
 
     return response
 
