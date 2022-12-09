@@ -167,19 +167,18 @@ def format_response(
     # TODO: Implement this function
     ...
 
-    arrangement = DNS_TYPES[qry_type]
 
 
-    answers = [item for item in zone[qry_name] if item[2] == arrangement]
-    stored = len(answers)
+    formatResponse = [i for i in zone[qry_name] if i[2] == DNS_TYPES[qry_type]]
+    stored = len(formatResponse)
 
     response = struct.pack(">HHHHHH", trans_id, 0x8100, 1, stored, 0, 0)
     response += qry
-    for i in answers:
+    for i in formatResponse:
         response += bytes([0xC0, 0x0C])
         response = response+ struct.pack(">HH", qry_type, 1)
-        timetoLive = TTL_SEC[i[0]]
-        cleanedTTLStr = val_to_n_bytes(timetoLive, 4)
+        addrTime = TTL_SEC[i[0]]
+        cleanedTTLStr = val_to_n_bytes(addrTime, 4)
         time2Live = bytearray()
         for j in cleanedTTLStr:
             time2Live += bytes([j])
@@ -190,7 +189,7 @@ def format_response(
         if qry_type == 1:
             strLength = len(i[len(i) - 1].split("."))
             response += struct.pack(">h", strLength)
-            addrArray = [bytes([int(item)]) for item in i[len(i) - 1].split(".")]
+            addrArray = [bytes([int(j)]) for j in i[len(i) - 1].split(".")]
             for i in addrArray:
                 response += i
             
