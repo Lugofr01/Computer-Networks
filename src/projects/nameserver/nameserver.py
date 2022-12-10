@@ -105,15 +105,15 @@ def read_zone_file(filename: str) -> tuple:
             lengthPart = len(part) - 1
 
             if lengthPart  >= 3:
-                time2Live = part[lengthPart - 3]
+                ttoLive = part[lengthPart - 3]
             else:
-                time2Live = time
+                ttoLive = time
             
             if values not in dictionary:
-                dictionary[values] = [(time2Live, part[lengthPart - 2], part[lengthPart-1], part[lengthPart])]
+                dictionary[values] = [(ttoLive, part[lengthPart - 2], part[lengthPart-1], part[lengthPart])]
 
             else:    
-                dictionary[values].append((time2Live, part[lengthPart - 2], part[lengthPart - 1], part[lengthPart])) 
+                dictionary[values].append((ttoLive, part[lengthPart - 2], part[lengthPart - 1], part[lengthPart])) 
                 
     return (origin, dictionary)
 
@@ -165,12 +165,12 @@ def format_response(
         response = response+ struct.pack(">HH", qry_type, 1)
         
         cleanedTTLStr = val_to_n_bytes(TTL_SEC[i[0]], 4)
-        # time2Live = qry
+        # ttoLive = qry
 
-        time2Live = bytearray()
+        ttoLive = bytearray()
         for j in cleanedTTLStr:
-            time2Live += bytes([j])
-        response += time2Live
+            ttoLive += bytes([j])
+        response += ttoLive
 
 
         if qry_type == 1:
@@ -184,11 +184,8 @@ def format_response(
         else:
             response += struct.pack(">H", 16)
             ans = i[len(i) - 1].split(":")
-
             for i in ans:
                 ans = val_to_n_bytes(int(i, 16), 2)
-
-
                 for i in ans:
                     response = response + bytes([i])      
     return response
