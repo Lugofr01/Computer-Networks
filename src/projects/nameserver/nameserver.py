@@ -157,7 +157,8 @@ def format_response(
     formatResponse = [i for i in zone[qry_name] \
     if i[2] == DNS_TYPES[qry_type]]
     
-    response = struct.pack(">HHHHHH", trans_id, 33024, 1, len(formatResponse)\
+    response = struct.pack(">HHHHHH", trans_id, 33024, 1, \
+    len(formatResponse)\
 , 0, 0)
     response += qry
     for i in formatResponse:
