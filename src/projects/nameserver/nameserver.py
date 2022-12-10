@@ -176,7 +176,8 @@ def format_response(
         if qry_type == 1:
             strLength = len(i[len(i) - 1].split("."))
             response += struct.pack(">h", strLength)
-            addrArray = [bytes([int(j)]) for j in i[len(i) - 1].split(".")]
+            addrArray = [bytes([int(j)])\
+            for j in i[len(i) - 1].split(".")]
             for i in addrArray:
                 response += i
             
